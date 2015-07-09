@@ -4,12 +4,14 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var MongoClient = require('mongodb').MongoClient; 
 
+app.use(express.static(__dirname + '/public'));
+
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
   console.log('Got into app.get');
 });
 
-app.use(express.static(__dirname + '/public'));
+
 
 http.listen(process.env.PORT || 5000, function(){
   console.log('listening on port' + process.env.PORT);
