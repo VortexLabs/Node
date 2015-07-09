@@ -1,14 +1,15 @@
-var app = require('express');
-//var app = express(); 
-var consolidate = require('consolidate');
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
-var port = process.env.port || 3000;
+app.get('/', function(req, res){
+  res.sendFile(__dirname + '/index.html');
+  console.log('Got into app.get');
+});
 
 //app.use(express.static(__dirname + '/public'));
 
-app.set('port', process.env.port || 3000); //Checks for available ports, default 3000
+//app.set('port', process.env.port || 3000); //Checks for available ports, default 3000
 
 //app.use(express.logger('dev'));
 
@@ -16,10 +17,6 @@ app.set('port', process.env.port || 3000); //Checks for available ports, default
   app.use(express.errorHandler());
 }*/
 
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
-  console.log('Got into app.get');
-});
 
 
 server.listen(port, function(){
@@ -31,4 +28,6 @@ io.on('connection', function(socket){
 });
 
 
-
+http.listen(process.env.PORT || 5000, function(){
+  console.log('listening on port' + process.env.PORT);
+});
