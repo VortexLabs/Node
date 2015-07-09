@@ -6,7 +6,7 @@ var io = require('socket.io')(server);
 
 var port = process.env.port || 3000;
 
-//app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
 app.set('port', process.env.port || 3000); //Checks for available ports, default 3000
 
