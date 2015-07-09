@@ -1,5 +1,5 @@
-var express = require('express');
-var app = express(); 
+var app = require('express');
+//var app = express(); 
 var consolidate = require('consolidate');
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
@@ -18,10 +18,12 @@ app.set('port', process.env.port || 3000); //Checks for available ports, default
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
+  console.log('Got into app.get');
 });
 
+
 server.listen(port, function(){
-	console.log('Port listening');
+	console.log('Port listening' + port);
 });
 
 io.on('connection', function(socket){
