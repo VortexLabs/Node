@@ -19,4 +19,12 @@ http.listen(process.env.PORT || 5000, function(){
 MongoClient.connect("mongodb://logan:macsaregay@ds047772.mongolab.com:47772/vortexlabs", function(err, db){
 	console.log('Everything is looking A-OK');
 	console.log(err);
+
+	document.getElementById("insert").onclick = function(){
+		db.collection("Chat").insert({_id: 1, name: "logan", email: "logan@vortexlabs.net"});
+	};
+	
+
 });
+
+
