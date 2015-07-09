@@ -8,10 +8,6 @@ app.get('/', function(req, res){
   console.log('Got into app.get');
 });
 
-io.on('connection', function(socket){
-	console.log('New user connected');
-});
-
 http.listen(process.env.PORT || 5000, function(){
   console.log('listening on port' + process.env.PORT);
 });
@@ -20,11 +16,17 @@ MongoClient.connect("mongodb://logan:macsaregay@ds047772.mongolab.com:47772/vort
 	console.log('Everything is looking A-OK');
 	console.log(err);
 
-	document.getElementById("insert").onclick = function(){
-		db.collection("Chat").insert({_id: 1, name: "logan", email: "logan@vortexlabs.net"});
-	};
-	
+	io.on('connection', function(socket){
+		console.log('New user connected');
+		socket.on('insertChat', function(){
+			db.collection("Chat").insert({_id: Math.random(), name: "logan", email: "logan@vortexlabs.net"});
+		});
 
+	});
+
+
+	
+	
 });
 
 
