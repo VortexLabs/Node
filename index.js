@@ -18,11 +18,6 @@ app.get('/', function(req, res){
 }*/
 
 
-
-server.listen(port, function(){
-	console.log('Port listening' + port);
-});
-
 io.on('connection', function(socket){
 	console.log('New user connected');
 });
