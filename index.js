@@ -5,7 +5,7 @@ var io = require('socket.io')(server);
 
 var port = process.env.ports || 3000;
 
-app.set('port', port); //Checks for available ports, default 3000
+app.set('port', process.env.ports || 3000); //Checks for available ports, default 3000
 
 server.listen(port, function(){
 	console.log('Port listening');
