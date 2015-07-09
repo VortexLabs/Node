@@ -10,6 +10,12 @@ var port = process.env.port || 3000;
 
 app.set('port', process.env.port || 3000); //Checks for available ports, default 3000
 
+app.use(express.logger('dev'));
+
+if ('development' == app.get('env')) {
+  app.use(express.errorHandler());
+}
+
 server.listen(port, function(){
 	console.log('Port listening');
 });
