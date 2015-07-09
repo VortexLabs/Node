@@ -18,9 +18,9 @@ MongoClient.connect("mongodb://logan:macsaregay@ds047772.mongolab.com:47772/vort
 
 	io.on('connection', function(socket){
 		console.log('New user connected');
-		socket.on('insertChat', function(){
+		//socket.on('insertChat', function(){
 			db.collection("Chat").insert({_id: Math.random(), name: "logan", email: "logan@vortexlabs.net"});
-		});
+		//});
 
 	});
 
